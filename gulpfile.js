@@ -21,7 +21,8 @@ function removeComments() { //remove os comentarios
     .pipe(gulp.dest('./src/scripts'));
 }
 
-exports.default = gulp.parallel(styles, images, removeComments);
+exports.default = gulp.parallel(styles, images);
+exports.removeComments = removeComments;
 exports.watch = function() {
     gulp.watch('./src/styles/*.scss', gulp.parallel(styles))
 }
