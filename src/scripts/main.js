@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() { 
     const buttons = document.querySelectorAll('[data-tab-button]'); 
+    const questions = document.querySelectorAll('[data-faq-question]') 
 
         for (let i = 0; i < buttons.length; i++) { 
         buttons[i].addEventListener('click', function(button) { 
@@ -10,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
             removeActiveButton();
             button.target.classList.add('shows__tabs__button--active'); 
         })
+    }
+
+    for (let i = 0; i < questions.length; i++) { 
+        questions[i].addEventListener('click', toggleAnswer); 
     }
 })
 
@@ -27,4 +32,11 @@ function hiddenTabs() {
     for (let i = 0; i < tabsContainer.length; i++) {
         tabsContainer[i].classList.remove('shows__list--active'); 
     }
+}
+
+function toggleAnswer(element) {
+    const openClass = 'faq__questions__item--open'; 
+    const parentElement = element.target.parentNode; 
+
+    parentElement.classList.toggle(openClass); 
 }
