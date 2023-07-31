@@ -1,8 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() { 
     const buttons = document.querySelectorAll('[data-tab-button]'); 
     const questions = document.querySelectorAll('[data-faq-question]') 
+    const hero = document.querySelector('.hero'); 
+    const heroHeight = hero.clientHeight; 
 
-        for (let i = 0; i < buttons.length; i++) { 
+
+
+    window.addEventListener('scroll', function() { 
+    const actPosition = window.scrollY 
+
+    if(actPosition < heroHeight) { 
+        hiddenElementsHeader(); 
+    } else {
+        showElementsHeader(); 
+    }
+    }) 
+
+    for (let i = 0; i < buttons.length; i++) { 
         buttons[i].addEventListener('click', function(button) { 
             const tabTarget = button.target.dataset.tabButton 
             const tab = document.querySelector(`[data-tab-id = ${tabTarget}]`) 
@@ -39,4 +53,14 @@ function toggleAnswer(element) {
     const parentElement = element.target.parentNode; 
 
     parentElement.classList.toggle(openClass); 
+}
+
+function hiddenElementsHeader() {
+    const header = document.querySelector('header');
+    header.classList.add('header--hidden'); 
+}
+
+function showElementsHeader() {
+    const header = document.querySelector('header');
+    header.classList.remove('header--hidden'); 
 }

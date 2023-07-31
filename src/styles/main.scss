@@ -5,6 +5,7 @@
 @use 'devices';
 @use 'faq';
 @use 'footer';
+@use 'header';
 
 @font-face {
     font-family: Avenir;
@@ -30,23 +31,51 @@
 }
 
 .text--small {
-    @include text(12px)
+    @include text(12px);
+
+    @media (max-width: 768px) {
+        @include text(11px);
+    }
 }
 
 .text--medium {
     @include text();
+
+    @media (max-width: 768px) {
+        @include text(14px);
+    }
 }
 
 .text--big {
     @include text(18px);
+
+    @media (max-width: 768px) {
+        @include text(15px);
+    }
 }
 
 .title--small {
     @include title(28px);
+
+    @media (max-width: 768px) {
+        @include title(22px);
+    }
 }
 
 .title--medium {
     @include title();
+
+    @media (max-width: 768px) {
+        @include title(24px);
+    }
+}
+
+.title--big {
+    @include title(44px);
+
+    @media (max-width: 768px) {
+        @include title(26px);
+    }
 }
 
 .link-text {
@@ -55,15 +84,12 @@
     text-decoration: underline;
 }
 
-.title--big {
-    @include title(44px);
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Avenir, sans-serif;
+    list-style: none;
 }
 
 body {
@@ -71,17 +97,44 @@ body {
 }
 
 .button {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         height: 60px;
         font-size: 18px;
         color: variables.$secTextColor;
-        background-color: #6421ff;
+        background-color: variables.$firstBackgroundButton;
         text-transform: uppercase;
         border-radius: 4px;
-        margin-top: 2vw;
-        margin-bottom: 8px;
         cursor: pointer;
+        text-decoration: none;
+        padding: 8px 14px;
+        letter-spacing: 1px;
+        border: 1px solid variables.$firstBackgroundButton;
+
+        &:hover {
+            background-color: lighten(variables.$firstBackgroundButton, 3%);
+        }
+
+        &--secondary {
+            background-color: variables.$secBackgroundButton;
+            border: 1px solid variables.$secBackgroundButton;
+
+            &:hover {
+                background-color: lighten(variables.$secBackgroundButton, 3%);
+            }
+        }
+
+        &--dark {
+            background-color: rgba(variables.$darkBackgroundButton, 0.8);
+            border: 1px solid variables.$secTextColor;
+
+            &:hover {
+                background-color: variables.$secTextColor;
+                color: variables.$backgroundColor;
+            }
+        }
 }
 
 .image-text-section {
@@ -89,6 +142,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
     
     img {
         max-width: 100%;
@@ -119,6 +176,12 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+            @media (max-width: 768px) {
+                position: relative;
+                left: 0;
+                width: 100%;
+            }
         }
     }
 }
