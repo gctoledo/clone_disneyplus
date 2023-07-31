@@ -2,6 +2,7 @@ const gulp = require('gulp'); //importa o gulp
 const sass = require('gulp-sass')(require('sass')); //importa sass e gulp-sass
 const strip = require('gulp-strip-comments'); //importa plugin
 const imagemin = require('gulp-imagemin');
+const uglify = require('gulp-uglify');
 
 function styles() { //transforma scss em css e comprime o arquivo
     return gulp.src('./src/styles/*.scss')
@@ -21,8 +22,15 @@ function removeComments() { //remove os comentarios
     .pipe(gulp.dest('./src/scripts'));
 }
 
-exports.default = gulp.parallel(styles, images);
+function scripts() {
+    return gulp.src('./src/scripts/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'));
+}
+
+exports.default = gulp.parallel(styles, images, scripts);
 exports.removeComments = removeComments;
 exports.watch = function() {
-    gulp.watch('./src/styles/*.scss', gulp.parallel(styles))
+    gulp.watch('./src/styles/*.scss', gulp.parallel(styles));
+    gulp.watch('./src/scripts/*.js', gulp.parallel(scripts));
 }

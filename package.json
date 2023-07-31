@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "js": "gulp removeComments",
-    "dev" : "gulp watch",
+    "dev": "gulp watch",
     "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,7 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^5.1.0",
     "gulp-strip-comments": "^2.5.2",
+    "gulp-uglify": "^3.0.2",
     "sass": "^1.64.1"
   }
 }
